@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>암호학(Cryptography) 이야기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+
+    <meta property="og:type" content="artitle"/>
+    <meta property="og:url" content="http://philosophical.one/posts/cryptography/"/>
+    <meta property="og:title" content="암호학(Cryptography) 이야기"/>
+    <meta property="og:description" content=""/>
+    <meta property="og:image" content="http://philosophical.one"/>
+    <meta property="og:image_source" content=""/>
+
+    <link rel="canonical" href="http://philosophical.one/posts/cryptography/"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css"/>
+
+</head>
+
+
+    <body>
+
+    <header class="site-header">
+
+  <div class="wrap">
+    <a class="site-title" href="/">Rubbish Philosopher</a>
+    <!--
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 18 15" enable-background="new 0 0 18 15" xml:space="preserve">
+          <path fill="#505050" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0
+            h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#505050" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484
+            h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#505050" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0
+            c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+      <div class="trigger">
+        
+          <a class="page-link" href="/feed.xml"></a>
+        
+          <a class="page-link" href="/"></a>
+        
+          <a class="page-link" href="/archives/57/"></a>
+        
+          <a class="page-link" href="/post/memory-allocation"></a>
+        
+          <a class="page-link" href="/archives/4/"></a>
+        
+          <a class="page-link" href="/post/the-devil-code"></a>
+        
+          <a class="page-link" href="/archives/71/"></a>
+        
+          <a class="page-link" href="/post/jsp-custom-tag"></a>
+        
+          <a class="page-link" href="/archives/136/"></a>
+        
+          <a class="page-link" href="/post/object-serialization"></a>
+        
+          <a class="page-link" href="/archives/300/"></a>
+        
+          <a class="page-link" href="/post/convert-from-javautildate-to-javasqldate"></a>
+        
+          <a class="page-link" href="/archives/301/"></a>
+        
+          <a class="page-link" href="/post/javabeans"></a>
+        
+          <a class="page-link" href="/archives/303/"></a>
+        
+          <a class="page-link" href="/post/java-socket-programming-basics"></a>
+        
+          <a class="page-link" href="/archives/306/"></a>
+        
+          <a class="page-link" href="/post/thoughts-about-iterator-pattern"></a>
+        
+          <a class="page-link" href="/archives/310/"></a>
+        
+          <a class="page-link" href="/post/exccesive-constants"></a>
+        
+          <a class="page-link" href="/archives/336/"></a>
+        
+          <a class="page-link" href="/post/advantages-of-link-over-copying"></a>
+        
+          <a class="page-link" href="/archives/353/"></a>
+        
+          <a class="page-link" href="/post/hangul-jaso"></a>
+        
+          <a class="page-link" href="/archives/375/"></a>
+        
+          <a class="page-link" href="/post/hangul-syllable-manipulation"></a>
+        
+          <a class="page-link" href="/archives/378/"></a>
+        
+          <a class="page-link" href="/post/selectquery"></a>
+        
+          <a class="page-link" href="/archives/425/"></a>
+        
+          <a class="page-link" href="/post/delegating-math-homework-to-computer"></a>
+        
+          <a class="page-link" href="/archives/420/"></a>
+        
+          <a class="page-link" href="/post/linux-system-in-danger"></a>
+        
+          <a class="page-link" href="/archives/552/"></a>
+        
+          <a class="page-link" href="/post/changing-order-of-operators"></a>
+        
+          <a class="page-link" href="/archives/555/"></a>
+        
+          <a class="page-link" href="/post/my-first-assembly-program"></a>
+        
+          <a class="page-link" href="/archives/558/"></a>
+        
+          <a class="page-link" href="/post/base62"></a>
+        
+          <a class="page-link" href="/archives/598/"></a>
+        
+          <a class="page-link" href="/post/bubble-sort"></a>
+        
+          <a class="page-link" href="/archives/597/"></a>
+        
+          <a class="page-link" href="/post/logn"></a>
+        
+          <a class="page-link" href="/archives/600/"></a>
+        
+          <a class="page-link" href="/post/dynamic-class-loading-in-java"></a>
+        
+          <a class="page-link" href="/archives/614/"></a>
+        
+          <a class="page-link" href="/post/longest-common-subsequence"></a>
+        
+          <a class="page-link" href="/archives/659/"></a>
+        
+          <a class="page-link" href="/post/php-timer"></a>
+        
+          <a class="page-link" href="/archives/683/"></a>
+        
+          <a class="page-link" href="/post/how-to-return-multiple-variables-in-c-cpp"></a>
+        
+          <a class="page-link" href="/archives/693/"></a>
+        
+          <a class="page-link" href="/post/command-line-based-ogg-to-mp3-converter-on-mac-os-x"></a>
+        
+          <a class="page-link" href="/archives/701/"></a>
+        
+          <a class="page-link" href="/post/determining-where-a-bash-shell-script-is-located"></a>
+        
+          <a class="page-link" href="/archives/894/"></a>
+        
+          <a class="page-link" href="/post/getting-the-value-of-pi-using-python"></a>
+        
+          <a class="page-link" href="/archives/911/"></a>
+        
+          <a class="page-link" href="/post/calculation-of-pi-using-python-with-multithreading"></a>
+        
+          <a class="page-link" href="/archives/1007/"></a>
+        
+          <a class="page-link" href="/post/grocery-store-club-card-imitation"></a>
+        
+          <a class="page-link" href="/archives/1179/"></a>
+        
+          <a class="page-link" href="/post/mounting-remote-filesystem-over-ssh"></a>
+        
+          <a class="page-link" href="/archives/1119/"></a>
+        
+          <a class="page-link" href="/post/permutation-generation"></a>
+        
+          <a class="page-link" href="/archives/1196/"></a>
+        
+          <a class="page-link" href="/post/finding-gram-matrix"></a>
+        
+          <a class="page-link" href="/archives/1200/"></a>
+        
+          <a class="page-link" href="/post/languages-of-the-year-2009"></a>
+        
+          <a class="page-link" href="/archives/1222/"></a>
+        
+          <a class="page-link" href="/post/programming-contest-4-function-calculator"></a>
+        
+          <a class="page-link" href="/archives/1230/"></a>
+        
+          <a class="page-link" href="/post/hanja-hanguel-translator"></a>
+        
+          <a class="page-link" href="/archives/1236/"></a>
+        
+          <a class="page-link" href="/post/python-ternary-operator"></a>
+        
+          <a class="page-link" href="/post/double-ssh-tunneling"></a>
+        
+          <a class="page-link" href="/archives/1327/"></a>
+        
+          <a class="page-link" href="/post/programmers-way-to-vote-on-doodle"></a>
+        
+          <a class="page-link" href="/archives/1388/"></a>
+        
+          <a class="page-link" href="/post/the-country-that-killed-wal-mart"></a>
+        
+          <a class="page-link" href="/archives/1501/"></a>
+        
+          <a class="page-link" href="/post/epson-nx420-no-ink-no-scanning"></a>
+        
+          <a class="page-link" href="/archives/1524/"></a>
+        
+          <a class="page-link" href="/post/visualization-of-pythons-pseudorandom-function"></a>
+        
+          <a class="page-link" href="/archives/1559/"></a>
+        
+          <a class="page-link" href="/post/reasons-why-i-dont-like-ndas"></a>
+        
+          <a class="page-link" href="/archives/1600/"></a>
+        
+          <a class="page-link" href="/post/thoughts-about-computer-science"></a>
+        
+          <a class="page-link" href="/archives/1627/"></a>
+        
+          <a class="page-link" href="/post/inconvenience-of-american-life"></a>
+        
+          <a class="page-link" href="/post/dreams-come-true"></a>
+        
+          <a class="page-link" href="/archives/1710/"></a>
+        
+          <a class="page-link" href="/post/is-there-any-more-software-to-come"></a>
+        
+          <a class="page-link" href="/archives/1729/"></a>
+        
+          <a class="page-link" href="/post/downloading-lecture-notes-in-batch"></a>
+        
+          <a class="page-link" href="/archives/1756/"></a>
+        
+          <a class="page-link" href="/post/impersonation"></a>
+        
+          <a class="page-link" href="/archives/1770/"></a>
+        
+          <a class="page-link" href="/post/what-you-eat-is-what-you-are"></a>
+        
+          <a class="page-link" href="/archives/1792/"></a>
+        
+          <a class="page-link" href="/post/how-better-translator-was-born"></a>
+        
+          <a class="page-link" href="/archives/1811/"></a>
+        
+          <a class="page-link" href="/post/thoughts-about-computer-science-2"></a>
+        
+          <a class="page-link" href="/archives/1837/"></a>
+        
+          <a class="page-link" href="/post/cryptography"></a>
+        
+          <a class="page-link" href="/archives/1856/"></a>
+        
+          <a class="page-link" href="/post/better-translator-tips"></a>
+        
+          <a class="page-link" href="/archives/1861/"></a>
+        
+          <a class="page-link" href="/post/bayes-theorem"></a>
+        
+          <a class="page-link" href="/archives/1883/"></a>
+        
+          <a class="page-link" href="/post/packet-corruption"></a>
+        
+          <a class="page-link" href="/archives/1889/"></a>
+        
+          <a class="page-link" href="/post/translation-sample-search"></a>
+        
+          <a class="page-link" href="/post/crisis-of-better-translator"></a>
+        
+          <a class="page-link" href="/archives/1920/"></a>
+        
+          <a class="page-link" href="/post/mathjax-matrix-rendering-issues-with-wordpress-markdown-plugin"></a>
+        
+          <a class="page-link" href="/post/goodbye-wordpress-hello-jekyll"></a>
+        
+          <a class="page-link" href="/post/raspberry-pi-gpio"></a>
+        
+          <a class="page-link" href="/post/to-move-or-not-to-move"></a>
+        
+          <a class="page-link" href="/post/problems-with-korean-online-banking"></a>
+        
+          <a class="page-link" href="/post/an-introduction-to-opencl-programming-model"></a>
+        
+          <a class="page-link" href="/post/salary-war"></a>
+        
+          <a class="page-link" href="/post/hicuda"></a>
+        
+          <a class="page-link" href="/post/sparse-matrix-representations"></a>
+        
+          <a class="page-link" href="/post/the-best-employee-benefits"></a>
+        
+          <a class="page-link" href="/post/penthouse"></a>
+        
+          <a class="page-link" href="/post/8percent"></a>
+        
+          <a class="page-link" href="/post/spoqa-pycon-2016-obfuscation-contest"></a>
+        
+          <a class="page-link" href="/post/roadtrip-in-australia-prep"></a>
+        
+          <a class="page-link" href="/post/roadtrip-in-australia-day1"></a>
+        
+          <a class="page-link" href="/post/roadtrip-in-australia-day2-1"></a>
+        
+          <a class="page-link" href="/post/roadtrip-in-australia-financial-settlement"></a>
+        
+          <a class="page-link" href="/post/honest-fund"></a>
+        
+          <a class="page-link" href="/post/personal-wiki"></a>
+        
+          <a class="page-link" href="/post/kakaopay-qrcode"></a>
+        
+          <a class="page-link" href="/redirects.json"></a>
+        
+          <a class="page-link" href="/pages/2/"></a>
+        
+          <a class="page-link" href="/pages/3/"></a>
+        
+          <a class="page-link" href="/pages/4/"></a>
+        
+          <a class="page-link" href="/pages/5/"></a>
+        
+          <a class="page-link" href="/pages/6/"></a>
+        
+      </div>
+    </nav>
+    -->
+
+    <script>
+      (function() {
+        var cx = '006822314949201949413:idm5bn05que';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//www.google.com/cse/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+    <gcse:search></gcse:search>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrap">
+      <div class="post">
+
+  <header class="post-header">
+    <h1>암호학(Cryptography) 이야기</h1>
+    <p class="meta">Mar 31, 2013
+     • Sumin Byeon
+     • Computer Science, Geeky Stuff, Information Security, Mathematics</p>
+  </header>
+
+  <article class="post-content">
+  
+  
+  
+  
+
+  
+  <div class="error message">
+    This article is more than five years old and potentially contains out-dated information.<br/>
+    작성한지 5년 이상 지난 게시물입니다. 최신의 정보와 맞지 않는 내용을 포함할 수도 있습니다.
+  </div>
+  
+  
+  <p>암호학(cryptography)은 나에게 있어 여러가지 면에서 중요한 의미를 지닌다. 암호학과 나의 인연의 시작은 아마 내가 고등학생때 봤던 <a href="http://en.wikipedia.org/wiki/SEED">SEED</a> 암호화 문서가 아닐까 한다. SEED는 1999년 한국인터넷진흥원과 국내 암호 전문가들이 개발한 128비트 블럭 암호화 알고리즘이다<sup id="fnref:4"><a href="#fn:4" class="footnote">1</a></sup>. 2009년에는 256비트 키를 지원하는 SEED 256도 개발 되었다.</p>
+
+<p>고등학생때 읽었던 SEED 문서는 아직도 고이 간직하고 있다. 그것도 파일이 아닌 인쇄해놓은 문서 말이다. 파일은 <a href="http://support.apple.com/kb/ht2531">Spotlight</a>에서 검색이 안 되는걸 보니 아마 백업 아카이브 어딘가에 숨어있는게 아닐까 한다. 사실 그때는 문서를 여러번 읽어봐도 내가 이해할 수 있는 내용은 반의 반도 되지 않았었다. 내가 가진 수학적 배경 지식의 수준이 형편 없었으니 어쩔 수 없는 일이다. 지금 다시 보면 조금 더 많이 이해할 수 있을것 같긴 하지만. SEED는 <a href="http://en.wikipedia.org/wiki/Request_for_Comments">RFC</a> 문서로도 등록 되어있는데 (<a href="http://www.ietf.org/rfc/rfc4269.txt">RFC 4269</a>), 관심 있는 사람들은 한번쯤 읽어보는것도 괜찮을것 같다.</p>
+
+<p>대학교 학부생 시절 마지막 학기때 들었던 암호학 수업도 기억에 남는다. 정말 많은 것을 배웠지만, 동시에 나의 지능 지수를 의심하게 만든 수업이기도 하다. 나의 자존감도 한 단계 낮춰주었다. 암호학 수업은 나에게 큰 깨달음을 주었는데, 대학 수업이 재밌어 보인다고 수강하면 안 된다는 것이다. 청강을 하는 것이 맞다.</p>
+
+<p>수업에서 사용했던 책이 바로 <a href="http://www.amazon.com/Introduction-Cryptography-Coding-Theory-2nd/dp/0131862391">Introduction to Cryptography</a>라는 제목의 책인데, <a href="https://www.facebook.com/photo.php?fbid=10101771852854572&amp;set=a.916646810382.2587387.10132775">내 침대 머리맡 책장에 잘 모셔놨다</a>. 잠이 안 올 때 읽으면 효과가 바로 나타난다.<sup id="fnref:7"><a href="#fn:7" class="footnote">2</a></sup></p>
+
+<h2 id="보안-통신">보안 통신</h2>
+
+<p>(내가 봤던) 대부분의 암호학 문헌에서 자주 등장하는 인물이 둘 있다. 바로 앨리스(Alice)와 밥(Bob)이다. 앨리스가 밥에게 메세지를 보내는 것이 일반적인 시나리오다. 그리고 잠재적인 도청자인 제 3의 인물, 이브(Eve)도 등장한다.</p>
+
+<p>앨리스가 밥에게 메시지를 보낼 때, 먼저 양측이 합의한 암호화 방식에 따라서 평문(plaintext)을 암호화 시킨다. 대부분의 경우에 이브는 앨리스와 밥이 어떤 암호화 방식을 사용하는지 알고 있다. 그럼에도 불구하고 이브가 메세지의 내용을 쉽게 알아낼 수 없는 이유는 바로 암호화 키(key)라는 것이 있기 때문인데, 키에 대해서는 잠시 후에 설명하겠다. 밥이 앨리스로부터 암호화된 메세지, 즉, 암호문(ciphertext)를 받으면 밥은 적절한 복호화 키를 가지고 그걸 다시 평문으로 변환한다.</p>
+
+<p>악마같은 이브는 언제나 이 둘 사이에 끼어들고 싶어하는데, 이브의 주요 관심사는 다음과 같다.</p>
+
+<ol>
+  <li>메세지의 내용을 알아내기.</li>
+  <li>암호화 키를 알아내서 같은 키로 만들어진 모든 암호문을 해독하기.</li>
+  <li>앨리스가 보낸 메세지를 변조하기.</li>
+  <li>앨리스인척 하기.</li>
+</ol>
+
+<p>보통 (1)이나 (2)를 소극적인 공격으로, (3)과 (4)를 적극적인 공격으로 분류한다.</p>
+
+<h2 id="암호학의-응용">암호학의 응용</h2>
+
+<p>암호학은 여러가지 목적으로 응용될 수 있는데, 큰 줄기로 분류하자면 다음의 네 가지의 응용 분야가 있다.</p>
+
+<h3 id="기밀-유지-confidentiality">기밀 유지 (Confidentiality)</h3>
+
+<p>앨리스와 밥이 주고 받는 메세지의 내용은 제 3자(특히 이브)가 알아볼 수 없어야 한다. 앨리스와 밥이 어떤 방식으로 메세지를 암호화 하는지 제 3자가 알고 있어도 메세지의 기밀성이 유지되도록 하는 것이 현대 암호학의 기본이다. 이 글에서 다룰 암호화, 복호화에 관한 얘기는 바로 이 기밀 유지 기법이다.</p>
+
+<h3 id="데이터-무결성-보증-data-integrity">데이터 무결성 보증 (Data Integrity)</h3>
+
+<p>메세지를 전송하는 과정이 항상 순탄하지만은 않다. 통신 장애로 인해서 메세지가 손상될 수도 있고, 못된 이브가 중간에서 장난을 칠 수도 있다. 메세지가 전송 과정 중에 손상되거나 변조되었을 경우 무결성이 손상되었다고 표현한다. 해시(hash) 함수를 비롯한 여러가지 데이터 무결성 보증 기술이 있는데, 기회가 되면 따로 포스팅을 해 보는것도 괜찮을것 같다.</p>
+
+<h3 id="인증-authentication">인증 (Authentication)</h3>
+
+<p>밥은 앨리스한테서 온 메세지를 받기 원한다. 사용자 인증을 통해서 메세지를 보내는 사람이 이브가 아닌 앨리스 본인이라는 것을 증명할 수 있다. 비밀번호처럼 앨리스만 <strong>알고 있는 것</strong>이나 지문이나 홍채, 목소리처럼 앨리스만 <strong>가지고 있는 것</strong>을 가지고 사용자를 인증 하는 것이 보통이다.</p>
+
+<h3 id="부인-방지-non-repudiation">부인 방지 (Non-repudiation)</h3>
+
+<p>앨리스가 메세지를 보내놓고 자신이 보내지 않았다고 우길 수 없게 만드는 기술이다. 전자상거래에서 특히 중요하게 사용되는데, 소비자가 물건을 구입해놓고 자신은 그런 거래를 승인한 적이 없다고 부인하지 못 하도록 만들 수 있기 때문이다.</p>
+
+<h2 id="암호화-알고리즘의-분류">암호화 알고리즘의 분류</h2>
+
+<p>현대적인 암호화 알고리즘은 크게 두 가지로 분류된다. 하나는 비밀키 암호화 방식이고, 다른 하나는 공개키 암호화 방식이다. 그 이외에도 고대와 중세 시대에 사용되었던 여러가지 암호화 방식이 있지만, 오늘날 암호학과 컴퓨팅 기술의 발전으로 인해 더이상 메세지의 기밀성을 보장할 수 없다. 이 글에서는 전통적인 암호 방식중 하나인 ROT-13, 기계식 암호의 대표격인 이니그마, 그리고 두 가지 현대적인 암호화 방식에 대해서 소개해보고자 한다.</p>
+
+<h2 id="rot-13-암호화">ROT-13 암호화</h2>
+
+<p>ROT-13은 단순한 치환 암호(substitution cipher)의 일종으로 영어 알파벳을 13글자씩 밀어서 암호화 및 복호화를 하는 방식이다. <a href="http://en.wikipedia.org/wiki/Caesar_cipher">시저 암호(Caesar cipher)</a>라고도 한다. <code class="highlighter-rouge">A</code>는 <code class="highlighter-rouge">N</code>이 되고, <code class="highlighter-rouge">B</code>는 <code class="highlighter-rouge">O</code>가 되는 식이다.</p>
+
+<p>예를 들어서, 다음과 같은 평문이 있다고 할 때,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RUBBISH PHILOSOPHER
+</code></pre></div></div>
+
+<p>ROT-13 방식으로 암호화를 하면 다음과 같은 암호문을 얻을 수 있다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>EHOOVFU CUVYBFBCURE
+</code></pre></div></div>
+
+<p>ROT-13에서는 암호화 함수와 복호화 함수가 같다. 알파벳을 13글자씩 밀어서 암호화 하는 방식이고 영문 알파벳은 총 26개가 있으니 어찌 보면 당연한 이야기이다. 즉, ROT-13 암호화 함수를 $R_{13}$이라 할 때 다음의 관계가 성립한다고 볼 수 있다.</p>
+
+<script type="math/tex; mode=display">R_{13}(R_{13}(x)) = x \text{ where } x \in \Sigma</script>
+
+<p>참고로 여기서 $\Sigma$는 모든 영문 알파벳을 포함하는 집합(set)을 의미한다.</p>
+
+<p><a href="http://web.forret.com/tools/rot13.asp">이 사이트</a>에 가면 ROT-13으로 직접 암호화, 복호화를 해볼 수 있다.</p>
+
+<p>하지만 치환 암호 방식에는 치명적인 문제점이 있다. 암호화 키가 없다는 점이다. 어떤 방식으로 암호화를 했는지만 알면 누구든지 암호를 풀 수 있다. 잠시 후에 소개할 현대적인 암호화 방식에서는 암호를 푸는 열쇠인 ‘키’라는 개념이 있는데, 이 암호화 키가 없으면 암호화 방식을 알아도 암호를 풀 수 없다.</p>
+
+<p>암호화 키가 없다는 것은 특정 평문을 암호화 했을 때 항상 똑같은 암호문이 나온다는 말과 일맥상통한다. 암호를 깨는 방법 중에 암호문에 등장하는 알파벳들의 등장 빈도수를 분석해서 원문을 추측하는 공격법이 있다. 예를 들어서 암호문에 <code class="highlighter-rouge">R</code>이 가장 많이 등장한다면 <code class="highlighter-rouge">R</code>에 대응되는 알파벳이 <code class="highlighter-rouge">E</code>라고 추측해볼 수 있는 것이다. 암호문이 충분히 길다면 현실성 있는 공격 기법이다.</p>
+
+<p>영어에서 자주 등장하는 알파벳과 빈도는 다음과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Alphabet</th>
+      <th style="text-align: center">e</th>
+      <th style="text-align: center">t</th>
+      <th style="text-align: center">a</th>
+      <th style="text-align: center">o</th>
+      <th style="text-align: center">i</th>
+      <th style="text-align: center">n</th>
+      <th style="text-align: center">s</th>
+      <th style="text-align: center">h</th>
+      <th style="text-align: center">r</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Frequency</td>
+      <td style="text-align: center">.127</td>
+      <td style="text-align: center">.091</td>
+      <td style="text-align: center">.082</td>
+      <td style="text-align: center">.075</td>
+      <td style="text-align: center">.070</td>
+      <td style="text-align: center">.067</td>
+      <td style="text-align: center">.063</td>
+      <td style="text-align: center">.061</td>
+      <td style="text-align: center">.060</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="이니그마enigma">이니그마(Enigma)</h2>
+
+<p>현대적인 컴퓨터가 개발 되기 전, 기계적인 암호화 방식도 개발되었었다. 대표적으로 이니그마(Enigma)라는 이름을 가진 기계가 있는데, 이는 세계 2차 대전 당시 독일군이 적군의 눈을 피해 비밀 통신을 하는데 사용됐었다. 선택적으로 전류를 흐르게 할 수 있는 여러개의 로터를 이용한 방식인데, 이 로터들의 처음 위치에 따라 전류가 흐르는 통로가 결정된다.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/File:Enigma-rotor-stack.jpg"><img src="http://blog-old.suminb.com/wp-content/uploads/2013/03/enigma-480x360.jpg" alt="이니그마의 로터" width="480" height="360" class="size-medium wp-image-1838" /></a></p>
+
+<p>이니그마의 암호를 깨려는 수 차례의 시도가 있었지만 모두 실패로 돌아갔었기에 이니그마는 한동안 매우 신뢰할만한 기계라고 여겨졌었다. 하지만 1930년대에 세 명의 폴란드 암호 전문가들이 초기의 이니그마 암호를 깨는데에 성공했다. 이 기술은 1939년, 독일이 폴란드를 침략하기 두 달 전에 영국 정부로 넘어갔다. 영국은 폴란드 전문가들의 기술을 개선하여 마침내 세계 2차 대전 기간 동안 독일군의 비밀 메세지들을 해독하는데 성공하게 된다.</p>
+
+<p>이니그마의 암호가 깨졌다는 사실은 전쟁이 끝난 후에도 30여년간 비밀로 유지 되었었는데, 이는 자신들의 과거 식민지에 이니그마 기계를 팔아넘긴 영국 정부가 식민지 사람들이 이 사실을 알기를 원치 않았기 때문이다<sup id="fnref:5"><a href="#fn:5" class="footnote">3</a></sup>. 진짜 못돼 쳐먹은 놈들이다.</p>
+
+<h2 id="비밀키-암호화">비밀키 암호화</h2>
+
+<p>비밀키 암호화는 다른 말로 대칭키(symmetric key) 암호화 라고도 한다. 무슨 말이냐 하면 암호화를 할 때 사용하는 키와 복호화를 할 때 사용하는 키가 같다는 얘기다. 따라서 이 암호화 키가 제 3자에게 유출되는 순간 암호화의 무결성은 깨진다.</p>
+
+<p>DES는 Data Encryption Standard의 약자로서 대표적인 비밀키(private key) 암호화 방식 중 하나이다. DES는 블럭 암호화 알고리즘인데, 메세지를 특정 크기의 블럭으로 나눠서 각 블럭을 독립적으로 암호화 하는 방식이다.</p>
+
+<h3 id="암호화-과정">암호화 과정</h3>
+
+<p>블럭의 크기는 64비트이고, $L_0R_0$의 형식으로 나타낸다. 여기서 $L_0$은 블럭의 좌측 32비트를, $R_0$은 블럭의 우측 32비트를 나타낸다. 그리고 암호화 키 <em>K</em>는 56비트의 길이를 가진다.</p>
+
+<p><em>i</em> 번째 라운드에서 $K$로부터 파생된 48비트 키 $K_i$와 $L_{i-1}R_{i-1}$을 입력받아 $L_i R_i$를 계산한다. 암호화 프로세서의 주요 부분은 32비트 입력값 $R_{i-1}$과 48비트 입력값 $K_i$를 이용해서 32비트 출력값을 만드는 함수 $f(R_{i-1}, K_i)$이다.</p>
+
+<p><em>i</em> 번째 라운드의 결과값은 다음과 같다.</p>
+
+<script type="math/tex; mode=display">L_i = R_{i-1} \text{ and } R_i = L_{i-1} \oplus f(R_{i-1}, K_i)</script>
+
+<p>여기서 $\oplus$는 XOR 연산을 의미한다. 이 연산은 특정 회수만큼 반복 되는데, 여기서 특정 회수를 <em>n</em> 이라 하자. 이 연산을 <em>n</em> 번 반복해서 암호문 $L_n R_n$이 만들어진다.</p>
+
+<h3 id="복호화-과정">복호화 과정</h3>
+
+<p>복호화는 지금까지 했던 연산들을 반대의 순서로 하면 된다. 암호화 과정을 통해 추론해보면 $L_n = R_{n-1}$ 그리고 $R_n = L_{n-1} \oplus f(L_{n-1}, K_n)$의 관계가 성립되므로 다음과 같은 관계식을 정립할 수 있다.</p>
+
+<script type="math/tex; mode=display">[ L_n ] [ R_n \oplus f(L_n, K_n) ]
+   = [ R_{n-1} ] [ L_{n-1} \oplus f(L_{n-1}, K_n) \oplus f(L_n, K_n) ]
+   = [ R_{n-1} ] [ L_{n-1} ]</script>
+
+<h3 id="des-알고리즘-사용하기">DES 알고리즘 사용하기</h3>
+
+<p>DES가 어떻게 작동하는지 대략적으로 알아봤으니, 이번엔 유닉스 시스템에서 DES 암호화를 사용하는 방법을 간략하게 소개해보려고 한다.</p>
+
+<p><code class="highlighter-rouge">openssl</code> 명령어를 가지고 여러가지 암호화 패키지를 사용할 수 있는데, DES는 다음과 같이 이용할 수 있다. 여기서 사용자가 입력한 암호를 가지고 암호화 키를 생성한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo "The cake was a lie" | openssl des &gt; message.enc
+enter des-cbc encryption password:
+Verifying - enter des-cbc encryption password:
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">hexdump</code> 명령어를 이용해서 <code class="highlighter-rouge">message.enc</code> 파일의 내용을 보면 전혀 알아볼 수 없는 내용이 들어가있다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ hexdump -C message.enc
+00000000  53 61 6c 74 65 64 5f 5f  0d d5 79 3a c1 ce 58 21  |Salted__..y:..X!|
+00000010  57 5c bd e3 4c f5 b5 94  3c 93 1a 6e 07 67 2b 7f  |W\..L...&lt;..n.g+.|
+00000020  82 05 52 94 5b 65 10 c7                           |..R.[e..|
+00000028
+</code></pre></div></div>
+
+<p>다시 원래의 메세지로 복호화를 시켜보자. 아까 암호화 할 때 입력했던 암호를 그대로 입력하면 된다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat message.enc | openssl des -d
+enter des-cbc decryption password:
+The cake was a lie
+</code></pre></div></div>
+
+<p>원래의 메세지가 출력되는 것을 볼 수 있다.</p>
+
+<h3 id="키의-길이">키의 길이</h3>
+
+<p>DES는 56비트 길이의 키를 가지는데, 오늘날 컴퓨팅 기술의 발전으로 인해 짧은 키를 사용하는 DES는 더이상 안전하지 않다고 알려져있다. 따라서 DES보다는 Triple DES를 사용할 것을 권장한다.</p>
+
+<p>널리 사용되는 비밀키 암호화 알고리즘 중에 <a href="http://en.wikipedia.org/wiki/Advanced_Encryption_Standard">AES (Advanced Encryption Standard)</a>라는 것이 있는데, 이 AES 알고리즘에서 사용되는 128비트, 256비트 길이의 키에 대해서 얘기해보려고 한다.</p>
+
+<p>암호화 알고리즘 자체에 별다른 문제가 존재하지 않는 이상, 비밀키 암호화를 깨는 유일한 방법은 무차별 대입 공격(brute-force attack)이다. 한마디로 가능한 모든 키를 대입해보는 것이다.</p>
+
+<p>하지만 이 무차별 대입 공격은 키의 길이가 어느정도 이상 되면 거의 무용지물이다. 이는 경우의 수가 너무 많기 때문인데, 참고로 128비트 암호화 키로 만들어낼 수 있는 경우의 수는 $2^{128}$이다. 이렇게만 써 놓으면 얼마나 큰 숫자인지 감이 잘 오지 않을 수도 있으니 여러가지 예를 들어보자.</p>
+
+<script type="math/tex; mode=display">\frac{\log(2^{128})}{\log(10)} \approx 38.5</script>
+
+<p>10진수로 나타내었을 때 자릿수가 무려 39자리 라는 것이다. 정확한 값은 다음과 같다.</p>
+
+<script type="math/tex; mode=display">2^{128} = 340,282,366,920,938,463,463,374,607,431,768,211,456</script>
+
+<p>너무나 큰 숫자라서 비교 대상이 마땅치 않지만, 억지로 비슷한(?) 범위의 숫자를 찾아보자면 지구에 있는 박테리아의 수 정도가 되겠는데, 이는 $5 \times 10^{30}$ 정도로 추정되고 있다.<sup id="fnref:2"><a href="#fn:2" class="footnote">4</a></sup></p>
+
+<p>이번엔 256비트 키가 가질 수 있는 경우의 수를 보자.</p>
+
+<script type="math/tex; mode=display">\frac{\log(2^{256})}{\log(10)} \approx 77.1</script>
+
+<p>(알려진) 우주에 존재하는 원자의 개수가 약 $10^{80}$에서 $10^{85}$개 정도로 알려져 있으니<sup id="fnref:1"><a href="#fn:1" class="footnote">5</a></sup> <sup id="fnref:2:1"><a href="#fn:2" class="footnote">4</a></sup>, 256비트 비밀키가 가질 수 있는 경우의 수는 실로 엄청나게 많다는 것을 알 수 있다.</p>
+
+<p>비밀키 기반 암호화 방식은 그 구조가 비교적 단순하여 빠르게 동작할 수 있고, 일정 수준 이상의 견고함을 보장한다는 장점이 있지만<sup>[citation needed]</sup>, 보안 통신에 참여하는 인원수와 비례해서 관리해야 할 키의 개수가 늘어난다는 단점이 있다.</p>
+
+<h2 id="공개키-암호화">공개키 암호화</h2>
+
+<p>비밀키 암호화와는 상반되는 개념으로 공개키(public key) 암호화가 있는데, 비대칭키(asymmetric key) 암호화 라고도 한다. 대표적인 공개키 암호화 알고리즘으로는 RSA를 꼽을 수 있다. 알고리즘을 고안한 사람들(Ron Rivest, Adi Shamir, Leonard Adleman) 이름의 앞 글자를 따서 RSA라 한다<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup>. 비밀키 암호화 방식과의 가장 큰 차이는 암호화를 할 때 사용하는 키와 복호화를 할 때 사용하는 키가 서로 다르다는 것이다.</p>
+
+<p>공개키는 두 가지 요소로 구성되어있다. 암호화 키와 복호화 키. 이 둘을 묶어서 키 페어(key pair)라고 부른다. 밥이 앨리스에게 암호화 키를 건네주면 앨리스는 그걸로 데이터를 암호화 해서 밥에게 보낸다. 밥은 자신만이 가지고 있는 복호화 키를 이용해서 암호화된 데이터를 다시 원문으로 복호화 시킨다.</p>
+
+<!--
+밥->밥: 키 페어(key pair) 생성
+밥->앨리스: 공개키 전송
+앨리스->앨리스: 데이터 암호화
+앨리스->밥: 암호문 전송
+밥->밥: 비밀키를 이용하여 복호화
+-->
+<p><img src="http://blog-old.suminb.com/wp-content/uploads/2013/03/sequence.png" alt="공개키 기반 암호화를 이용한 통신 과정" width="388" height="369" class="size-full wp-image-1841" /></p>
+
+<p>여기서 중요하게 짚고 넘어가야 할 점은 암호화 키와 복호화 키가 서로 다르다는 것이다. 밥이 앨리스에게 암호화 키를 전송하는 과정에서 키가 제 3자에게 노출된다고 하더라도, 앨리스가 밥에게 보낸 메세지를 해독하는 일은 불가능하다. 또한, 보안 통신에 참여하는 인원수가 늘어난다고 해도 밥이 관리해야 할 키의 개수는 단 한개뿐이다.</p>
+
+<p>그럼 공개키 암호화 방식만 사용하면 될 것이지, 무엇 하러 키 관리가 어려운 비밀키 암호화 방식을 사용하느냐고 묻는 사람도 있을 것이다. 암호화 키와 복호화 키가 따로 있는 공개키 암호화 방식은 키 관리가 용이하다는 장점이 있지만, 비밀키 암호화 방식에 비해서 현저히 느리다<sup>[citation needed]</sup>. 많은 양의 데이터를 암호화 할 때에는 비밀키 암호화 알고리즘으로 암호화를 하고, 그 <strong>비밀키</strong>를 공개키 암호화 알고리즘으로 암호화 하는 것이 일반적이다. 양쪽의 장점만 취하는 것이다.</p>
+
+<p>또한, 비밀키 암호화 방식과 비교했을 때 공개키의 길이가 상당히 길다는 것을 알 수 있다. 128비트에서 256비트 사이의 키를 주로 사용하는 비밀키 암호와 달리 공개키 암호는 주로 1024비트, 2048비트의 훨씬 긴 키를 사용하는데, 이는 특수한 성질을 요구하는 공개키의 특성을 이용하여 공개키가 될 수 없는 키들을 미리 제외시키는 일이 가능하기 때문이다.</p>
+
+<p>그럼 실제로 <a href="http://en.wikipedia.org/wiki/RSA_(algorithm)">RSA</a>가 어떻게 동작하는지 알아보자. 밥이 일단 두 개의 소수(prime number) <em>p</em>와 <em>q</em>를 선택하고, 그 둘을 곱한다.</p>
+
+<script type="math/tex; mode=display">n = pq</script>
+
+<p>그리고 다음과 같은 성질을 가지는 암호화 지수(encryption exponent) <em>e</em>를 선택한다.</p>
+
+<script type="math/tex; mode=display">\gcd(e, (p - 1)(q - 1)) = 1</script>
+
+<p>그런 다음 밥은 앨리스에게 암호화 키인 $(n, e)$를 전송하고, <em>p</em>와 <em>q</em>는 아무한테도 공개하지 않는다. 암호화 키를 넘겨받은 앨리스는 다음과 같이 메세지 <em>m</em>을 암호화 하여 암호문 <em>c</em>를 밥에게 전송한다.</p>
+
+<p>$$ c \equiv m^e \mod n $</p>
+
+<p>앨리스로부터 암호문을 넘겨받은 밥은 다음과 같이 복호화 지수(decryption exponent) <em>d</em>를 계산한다.</p>
+
+<script type="math/tex; mode=display">de \equiv 1 \mod (p - 1)(q - 1)</script>
+
+<p>그런 다음, 암호문 <em>c</em>를 다음과 같이 복호화 한다.</p>
+
+<script type="math/tex; mode=display">m \equiv c^d</script>
+
+<p><em>p</em>와 <em>q</em>의 값을 결정할 때 주의해야 할 사항이 하나 있다. 두 값이 너무 가까워서도 안 되고, 또 너무 멀어서도 안 된다는 것이다. 예를 들어서 두 수가 서로 너무 가까우면 $\sqrt{n}$부터 시작해서 무차별 대입 공격으로 $n = pq$을 만족하는 <em>p</em>와 <em>q</em>의 값을 찾을 수 있다. 반대로, 두 수가 서로 너무 멀면 <em>p</em>와 <em>q</em> 중 하나는 너무 작은 값이 되므로 그 값을 찾기 수월해진다.</p>
+
+<p>앨리스에게 보낸 암호화 키 $(n, e)$를 가지고 <em>p</em>와 <em>q</em>의 값을 알아내는건 현실적으로 불가능하다. 물론 충분한 시간과 자원이 주어지면 모든 경우의 수를 고려해서 억지로 알아내는 일이 가능하겠지만, 일반적인 개인용 컴퓨터를 이용한다면 영겁의 세월이 지나야만 가능한 일이다. 천만달러의 고성능 기계로도 1024비트 RSA키를 깨는데 무려 3,000,000년이 걸릴 것이라고 추정한 사람도 있다.<sup id="fnref:8"><a href="#fn:8" class="footnote">7</a></sup> 이러한 추정치가 2002년에 내놓은 것이고 지난 11년간의 기술의 발전을 고려했을 때, 똑같은 비용을 투자한다고 가정하면 300만년보다는 시간이 조금 덜 걸리겠지만, 우리가 살아있는 동안 RSA 키를 깨는 모습을 보지 못 한다는 사실에는 변함이 없다. 다시 말해서 복호화 키를 구성하는 두 개의 소수 <em>p</em>와 <em>q</em>가 없이는 메세지를 복호화 하는 일은 현실적으로 불가능하다는 것이다. 결과적으로 이 두 개의 소수를 다른 사람에게 공개하지 않고도 보안이 유지되는 통신을 하는 일이 가능한 것이다.</p>
+
+<h2 id="마무리">마무리</h2>
+
+<p>인류는 수천년 전 부터 암호학에 많은 관심이 있었다. 수학이 발달되지 않아서 현대적인 암호학적 기법이 존재하지 않았던 시절에도 ROT-13과 같은 암호 기법을 만들어 사용했다. 현대적인 컴퓨터가 없던 시절에는 기계식 암호화를 사용했었다. 여러가지 역사적 사건에서도 볼 수 있듯이 암호학은 전쟁의 승패를 결정짓는데 중요한 역할을 하기도 했다.</p>
+
+<p>암호학은 우리 생활 곳곳에 숨어있다. 아마존에서 물건을 주문할 때에도 필요하고, 회사에서 직원들에게 매달 월급을 줄 때에도 필요하다. 이동통신사들의 GSM, CDMA 통신망에도, 은행 ATM 기계의 통신망에서도 암호학의 도움 없이는 안전한 통신을 보장하지 못한다. 매일같이 사용하는 이메일과 페이스북 계정의 보안, 우리가 가지고 있는 은행 계좌의 안전, 국가 안보 등 이 모든 것이 공개키를 구성하는 두 개의 소수를 찾는데 얼마나 오랜 시간이 걸리는지에 달렸다고 해도 과언이 아니다.</p>
+
+<p><a href="http://blog-old.suminb.com/wp-content/uploads/2013/03/chase.png"><img src="http://blog-old.suminb.com/wp-content/uploads/2013/03/chase-480x354.png" alt="체이스 은행 보안 인증서" width="480" height="354" class="size-medium wp-image-1842" /></a></p>
+
+<p>사실, 현존하는 암호화 알고리즘은 충분한 시간과 자원이 주어진다면 무력화 시킬 수 있다. 그럼에도 불구하고 현재 널리 사용되고 있는 암호화 알고리즘들이 안전하다고 판단되는 이유는 무엇일까? 만약 누군가가 천문학적인 비용을 투자해서 앨리스가 밥에게 보낸 암호화된 메세지를 100년만에 깼다고 가정해보자. 그 메세지의 내용은 100년 후의 누군가에게 가치가 있을까? 메세지의 내용이 앨리스의 신용카드 번호라고 해도 그건 더이상 이용 가치가 없는 정보이다. 대부분의 신용카드는 3-5년을 주기로 만료되기 때문이다. 미국 정부에서 다루는 기밀 정보(classified information)도 기밀을 유지하는 유효 기간이 있다. 기본적으로는 25년의 유효 기간을 갖지만, 때에 따라서는 그것보다 길 수도 있다. 유효 기간이 지나면 기밀 상태가 해제되어 일반에 공개된다.<sup id="fnref:10"><a href="#fn:10" class="footnote">8</a></sup> 이처럼 우리가 다루는 정보는 (특별한 경우를 제외하고는) 일정 시간이 지나면 그 가치를 잃게 되어있는데, 이런 이유로 일정 시간 안에 암호화된 메세지를 해독하는 일이 불가능하면 그 암호화는 현실적으로(practically) 안전하다고 말할 수 있는 것이다.</p>
+
+<h2 id="도전-과제">도전 과제</h2>
+
+<p><a href="http://blog-old.suminb.com/wp-content/uploads/2013/03/message.enc">message.enc</a></p>
+
+<p>이 첨부 파일에는 $40짜리 스타벅스 기프트 카드가 숨겨진 위치가 쓰여있다. 메세지를 해독한 사람은 카드를 가져가도 좋다. 카드를 한 장 밖에 준비하지 못한 관계로 선착순 한 명만 카드를 가져갈 수 있고, 제한 시간은 이 글이 출판된 날로부터 180일이다.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:4">
+      <p>Unknown Author. “<a href="http://seed.kisa.or.kr/iwt/ko/sup/EgovSeedInfo.do">SEED 암호 알고리즘</a>.” <em>KISA</em>. KISA, n.d. Web. 29 Feb. 2013. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:7">
+      <p>농담 반, 진담 반이다. <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:5">
+      <p>Trappe, Wade, and Lawrence C. Washington. <em>Introduction to Cryptography: With Coding Theory</em>. Upper Saddle River, NJ: Pearson Prentice Hall, 2006. 50. Print. <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Multiple Authors. “<a href="http://en.wikipedia.org/wiki/Orders_of_magnitude_(numbers)">Orders of Magnitude (numbers)</a>.” <em>Wikipedia</em>. Wikimedia Foundation, 29 Mar. 2013. Web. 31 Mar. 2013. <a href="#fnref:2" class="reversefootnote">&#8617;</a> <a href="#fnref:2:1" class="reversefootnote">&#8617;<sup>2</sup></a></p>
+    </li>
+    <li id="fn:1">
+      <p><a href="http://www.wolframalpha.com/input/?i=number+of+atoms+in+universe&amp;lk=4&amp;num=1">http://www.wolframalpha.com/input/?i=number+of+atoms+in+universe&amp;lk=4&amp;num=1</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+      <p>Multiple Authors. “<a href="http://en.wikipedia.org/wiki/RSA_(algorithm)">RSA (algorithm)</a>.” <em>Wikipedia</em>. Wikimedia Foundation, 29 Mar. 2013. Web. 30 Mar. 2013. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:8">
+      <p>Silverman, Robert D. “<a href="http://www.rsa.com/rsalabs/node.asp?id=2007">Has the RSA Algorithm Been Compromised as a Result of Bernstein’s Paper?</a>” <em>RSA Laboratories</em>. N.p., 8 Apr. 2002. Web. 30 Mar. 2013. <a href="#fnref:8" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:10">
+      <p>Multiple Authors. “<a href="http://en.wikipedia.org/wiki/Classified_information_in_the_United_States#Declassification">Classified Information in the United States - Declassification</a>.” <em>Wikipedia</em>. Wikimedia Foundation, 29 Mar. 2013. Web. 31 Mar. 2013. <a href="#fnref:10" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </article>
+
+  <!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+<a class="addthis_button_tweet"></a>
+<a class="addthis_counter addthis_pill_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4d8edc142ba2266a"></script>
+<!-- AddThis Button END -->
+
+
+  
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_shortname = 'blog-suminb-com'; // required: replace example with your forum shortname
+    
+    var disqus_url = 'http://blog.suminb.com/archives/1837';
+    
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrap">
+
+    <div class="footer-heading">
+      <h2>Rubbish Philosopher</h2>
+      <p class="site-description">This statement is false.</p>
+    </div>
+
+
+    <div class="footer-col-1 column">
+      <ul>
+        <li>Subscribe <a href="/feed.xml">via RSS</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col-2 column">
+      <ul>
+        <li>
+          <a href="https://github.com/suminb">
+            <span class="icon github">
+              <svg version="1.1" class="github-icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+                <path fill-rule="evenodd" clip-rule="evenodd" fill="#C2C2C2" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761
+                c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32
+                c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472
+                c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037
+                C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65
+                c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261
+                c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082
+                c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129
+                c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+              </svg>
+            </span>
+            <span class="username">suminb</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/suminb">
+            <span class="icon twitter">
+              <svg version="1.1" class="twitter-icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+                <path fill="#C2C2C2" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27
+                c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767
+                c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206
+                C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271
+                c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469
+                c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+              </svg>
+            </span>
+            <span class="username">suminb</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col-3 column">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a>
+      <p class="license">This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</p>
+    </div>
+
+  </div>
+
+</footer>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-346833-1', 'auto', {'allowLinker': true});
+  ga('require', 'linker');
+  ga('linker:autoLink', ['philosophical.one', 'blog.suminb.com']);
+  ga('send', 'pageview');
+
+</script>
+
+
+
+    <script type="text/javascript"
+       src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_SVG"></script>
+    <!--
+    NOTE: Originally, we've been using http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    (same MathJax.js file, but with a different configuration), which comes with a somewhat ugly font.
+    So we decided to use a different configuration (TeX-AMS_SVG), which is used by StackEdit.
+    -->
+    <script>
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+    </script>
+    </body>
+</html>
